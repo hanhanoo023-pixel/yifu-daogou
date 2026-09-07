@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-08-28T11:56:37.828863+00:00",
+  "database": "data/experiments/catalog_hybrid_clean_v1.db",
+  "database_sha256": "a050567bbbe400a46919cba54ceee405bd18185de572af2a0b8276f97a1647e4",
+  "previous_database": "data/experiments/catalog_hybrid.db",
+  "previous_database_sha256": "a66be9141d3fbdbbad4f2f37d6032e859052f96ee2b762393701a9ee96e8075a",
+  "projection": "models/c_recommender/public_semantic_two_tower.pt",
+  "projection_sha256": "900d3083aee1a94be01fc9f5bfbdff3aecdf744c86dcce474b32c00cbe268b2d",
+  "embeddings_sha256": "540e97cddd6fcf423345dda9ff121583fd34d6a634db795e6b131fa6726fd0dd",
+  "product_ids_sha256": "220e710a4926a2c1dd79c85a0a1497f76ad614f69caba0d2c16d8ce4d1e76773",
+  "base_model": "models/c_recommender/multilingual-e5-small",
+  "records": 255707,
+  "shape": [
+    255707,
+    128
+  ],
+  "dtype": "float32",
+  "ordering": "products.id ascending; embedding_row = products.id - 1",
+  "batch_size": 64,
+  "device": "cpu",
+  "refresh_reason": "reviewed_hybrid_catalog_v1",
+  "refreshed_vectors": 12,
+  "elapsed_seconds": 1.009,
+  "active_records": 255565,
+  "moderated_inactive_records": 142
+}
