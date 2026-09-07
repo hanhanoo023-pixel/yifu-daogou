@@ -1,0 +1,50 @@
+{
+  "source": "amazon-data/meta_Clothing_Shoes_and_Jewelry.jsonl.gz.part",
+  "database": "data/products_complete.db",
+  "backup_databases": [
+    "data/products_complete.721849.backup.db",
+    "data/products_complete.252413.pre_color_fix.backup.db"
+  ],
+  "started_at": "2026-08-19T12:20:12.307638+00:00",
+  "finished_at": "2026-08-19T12:22:36.833841+00:00",
+  "elapsed_seconds": 144.524,
+  "scanned_records": 7218481,
+  "database_records": 252413,
+  "database_size_bytes": 467939328,
+  "integrity_check": "ok",
+  "color_changes_from_previous_database": 33886,
+  "missing_or_invalid_required": {
+    "parent_asin": 0,
+    "title": 0,
+    "category": 0,
+    "color_raw": 0,
+    "color": 0,
+    "image": 0,
+    "size": 0,
+    "season": 0,
+    "price": 0,
+    "stock": 0,
+    "non_explicit_color_source": 0,
+    "non_synthetic_stock_source": 0
+  },
+  "field_source_counts": {
+    "price": {
+      "synthetic_demo": 168808,
+      "original": 83605
+    },
+    "size": {
+      "synthetic_demo": 220810,
+      "explicit_amazon": 31603
+    },
+    "season": {
+      "synthetic_demo": 251459,
+      "explicit_amazon": 954
+    },
+    "color": {
+      "explicit_amazon": 252413
+    },
+    "stock": {
+      "synthetic_demo": 252413
+    }
+  }
+}

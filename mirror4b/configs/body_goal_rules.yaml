@@ -1,0 +1,21 @@
+body_goals:
+  elongate:
+    label: 显高
+    positive_terms: ["high waist", "high-waist", "高腰", "vertical stripe", "vertical", "竖条纹", "v-neck", "v neck", "V领", "longline"]
+    negative_terms: ["drop waist", "低腰", "low rise", "low-rise"]
+  streamline:
+    label: 显瘦
+    positive_terms: ["straight", "直筒", "tailored", "修身剪裁", "clean line", "利落", "vertical stripe", "竖条纹", "wrap", "裹身"]
+    negative_terms: ["oversized ruffle", "层叠荷叶边", "bulky", "厚重蓬松"]
+  tummy_coverage:
+    label: 遮腹
+    positive_terms: ["loose", "宽松", "relaxed", "a-line", "a line", "A字", "empire waist", "高腰线", "peplum", "荷叶摆", "tunic"]
+    negative_terms: ["crop top", "cropped", "短款", "bodycon", "紧身包臀"]
+  shoulder_balance:
+    label: 修饰肩部
+    positive_terms: ["v-neck", "v neck", "V领", "raglan", "插肩", "soft shoulder", "落肩", "halter", "挂脖"]
+    negative_terms: ["shoulder pad", "垫肩", "puff sleeve", "泡泡袖", "cap sleeve", "盖袖"]
+  leg_balance:
+    label: 修饰腿型
+    positive_terms: ["straight leg", "直筒", "wide leg", "阔腿", "bootcut", "微喇", "a-line", "A字", "midi", "中长", "maxi", "长裙"]
+    negative_terms: ["skinny", "紧身裤", "mini skirt", "超短裙"]

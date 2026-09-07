@@ -1,0 +1,43 @@
+intent_groups:
+  discovery: [RECOMMEND_PRODUCT, BROWSE_PRODUCT, REQUEST_ALTERNATIVE, REFINE_FILTERS, OUTFIT_ADVICE]
+  external_data: [ASK_TREND, SEARCH_EXTERNAL_PRODUCT, ASK_NEW_ARRIVAL]
+  product_question: [VIEW_PRODUCT, EXPLAIN_PRODUCT, ASK_PRICE, ASK_MATERIAL, ASK_STOCK, ASK_SIZE, ASK_COLOR, ASK_BRAND, ASK_CARE, ASK_STYLE, ASK_OCCASION]
+  comparison: [COMPARE_PRODUCTS]
+  memory: [PREFERENCE_UPDATE, MEMORY_QUERY, MEMORY_DELETE]
+  conversation: [CLEAR_FILTERS, RESET_SESSION, GREETING, HELP, THANKS, CONFIRM, DENY, SMALL_TALK]
+  boundary: [OUT_OF_SCOPE, UNKNOWN]
+
+slot_fields:
+  - category
+  - product_scope
+  - subcategory
+  - gender
+  - age_group
+  - color
+  - color_depth
+  - size
+  - season
+  - min_price
+  - max_price
+  - min_rating
+  - price_currency
+  - brand
+  - material
+  - fit
+  - pattern
+  - sleeve_length
+  - garment_length
+  - neckline
+  - occasions
+  - style_preferences
+  - body_goals
+  - weather
+  - excluded_categories
+  - excluded_colors
+  - excluded_materials
+  - excluded_brands
+  - excluded_styles
+  - negative_colors
+  - excluded_product_ids
+
+slot_operations: [SET, ADD, REMOVE, CLEAR, KEEP]

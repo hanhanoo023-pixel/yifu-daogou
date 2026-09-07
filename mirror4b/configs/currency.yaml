@@ -1,0 +1,3 @@
+catalog_currency: USD
+cny_per_usd: 7.20
+notice: "商品价格以美元展示；人民币预算按演示汇率 1 USD = 7.20 CNY 换算，不代表实时汇率。"

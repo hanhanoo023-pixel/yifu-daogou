@@ -1,0 +1,14 @@
+checked_fields:
+  - title
+  - category
+  - brand
+  - material
+  - features_text
+  - price
+  - price_source
+  - size_source
+  - season_source
+  - stock_quantity
+  - stock_source
+  - color
+block_on_high_severity_count: 2

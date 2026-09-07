@@ -1,0 +1,30 @@
+{"case_id":"S001","text":"推荐「Blue cotton shirt」。品类为上衣，颜色为蓝色，材质为Cotton；价格为演示值；库存为演示值。","expected_status":"PASS","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S002","text":"推荐「Blue cotton shirt」。","expected_status":"PASS","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S003","text":"品类为上衣。","expected_status":"PASS","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S004","text":"颜色为蓝色。","expected_status":"PASS","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S005","text":"品牌为Test Brand。","expected_status":"PASS","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S006","text":"材质为Cotton。","expected_status":"PASS","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S007","text":"价格为演示值。","expected_status":"PASS","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S008","text":"库存为演示值。","expected_status":"PASS","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S009","text":"这件是棉质商品。","expected_status":"PASS","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S010","text":"商品库记录的品类为上衣，颜色为蓝色。","expected_status":"PASS","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S011","text":"这件绝对显瘦。","expected_status":"REWRITE","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S012","text":"这件保证显瘦。","expected_status":"REWRITE","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S013","text":"这件保证好看。","expected_status":"REWRITE","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S014","text":"这件一定适合。","expected_status":"REWRITE","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S015","text":"这件是真丝。","expected_status":"REWRITE","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S016","text":"颜色为红色。","expected_status":"REWRITE","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S017","text":"品牌为Other Brand。","expected_status":"REWRITE","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S018","text":"推荐「Another product」。","expected_status":"REWRITE","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S019","text":"库存为10件。","expected_status":"REWRITE","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S020","text":"价格为29.99。","expected_status":"REWRITE","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S021","text":"这是全网最低，只剩最后一件。","expected_status":"BLOCK","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S022","text":"这件是真丝，而且是全网最低。","expected_status":"BLOCK","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S023","text":"品牌为Other Brand，只剩最后一件。","expected_status":"BLOCK","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S024","text":"品类为连衣裙，颜色为红色。","expected_status":"BLOCK","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S025","text":"推荐「Another product」，品牌为Other Brand。","expected_status":"BLOCK","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S026","text":"库存为10件，而且是全网最低。","expected_status":"BLOCK","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S027","text":"价格为99.99，只剩最后一件。","expected_status":"BLOCK","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S028","text":"你的腿太粗，这件只剩最后一件。","expected_status":"BLOCK","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S029","text":"这件100%真丝，品牌为Other Brand。","expected_status":"BLOCK","product_overrides":{},"annotation_status":"draft_ai","review_required":true}
+{"case_id":"S030","text":"颜色为绿色，推荐「Another product」。","expected_status":"BLOCK","product_overrides":{},"annotation_status":"draft_ai","review_required":true}

@@ -1,0 +1,71 @@
+styles:
+  gentle:
+    label: 温柔
+    positive_terms:
+      - lace
+      - floral
+      - flower
+      - sunflower
+      - chiffon
+      - ruffle
+      - ruffles
+      - ruched
+      - sweet
+      - feminine
+      - romantic
+      - cute
+      - bow
+      - a-line
+      - 蕾丝
+      - 花卉
+      - 雪纺
+      - 荷叶边
+      - 甜美
+      - 温柔
+      - 浪漫
+    negative_terms:
+      - safety
+      - high visibility
+      - high-visibility
+      - reflective
+      - workwear
+      - tactical
+      - athletic
+      - workout
+      - running
+      - performance
+      - scrub
+      - uniform
+      - 安全服
+      - 反光
+      - 工作服
+      - 运动训练
+      - 制服
+  casual:
+    label: 休闲
+    positive_terms: [casual, relaxed, everyday, basic, tee, denim, sneaker, 休闲, 日常, 基础款, 牛仔]
+    negative_terms: [formal, evening gown, tuxedo, 正装, 礼服]
+  minimalist:
+    label: 简约
+    positive_terms: [minimal, minimalist, simple, clean, solid, basic, 简约, 极简, 纯色]
+    negative_terms: [ornate, sequined, costume, 繁复, 亮片, 戏服]
+  formal:
+    label: 正式
+    positive_terms: [formal, business, tailored, blazer, suit, dress shirt, 正式, 商务, 西装, 衬衫]
+    negative_terms: [bikini, sleepwear, distressed, 泳装, 睡衣, 破洞]
+  sporty:
+    label: 运动
+    positive_terms: [sport, sporty, athletic, workout, running, yoga, performance, 运动, 健身, 跑步, 瑜伽]
+    negative_terms: [formal, evening gown, blazer, 正装, 礼服, 西装]
+  retro:
+    label: 复古
+    positive_terms: [retro, vintage, classic, polka dot, plaid, 复古, 古典, 波点, 格纹]
+    negative_terms: [futuristic, tactical, 未来感, 战术]
+  streetwear:
+    label: 街头
+    positive_terms: [streetwear, street, oversized, graphic, cargo, hoodie, 街头, 宽松, 印花, 工装]
+    negative_terms: [formal, evening gown, 正装, 礼服]
+  elegant:
+    label: 优雅
+    positive_terms: [elegant, refined, satin, silk, midi, tailored, 优雅, 精致, 缎面, 真丝]
+    negative_terms: [tactical, workwear, distressed, 战术, 工作服, 破洞]

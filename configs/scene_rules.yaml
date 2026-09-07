@@ -1,0 +1,161 @@
+scenes:
+  daily:
+    label: 日常
+    aliases: [daily, everyday, 日常, 平时, 日常穿, 平时穿]
+    business_labels: [日常]
+    preferred_categories: [top, pants, shorts, skirt, dress, sweater, outerwear, shoes, bag, set]
+    blocked_categories: [costume]
+    positive_terms: [casual, everyday, basic, relaxed, versatile, 日常, 休闲, 基础款, 百搭]
+    negative_terms: [costume, cosplay, 戏服]
+  school:
+    label: 上学/校园
+    aliases: [school, campus, class, college, 上学, 学校, 校园, 上课, 课堂, 大学]
+    business_labels: []
+    preferred_categories: [top, pants, shorts, skirt, dress, sweater, outerwear, shoes, bag, set]
+    blocked_categories: [swimwear, underwear, costume]
+    positive_terms: [school, campus, college, student, varsity, preppy, uniform, backpack, sneaker, casual, basic, denim, 学校, 校园, 学生, 学院, 制服, 书包, 休闲, 基础款, 牛仔]
+    negative_terms: [bikini, lingerie, evening gown, cocktail dress, 泳装, 内衣, 晚礼服]
+  commute:
+    label: 上班/通勤
+    aliases: [commute, work, office, workplace, 通勤, 上班, 工作, 职场, 办公室]
+    business_labels: [通勤]
+    preferred_categories: [top, dress, pants, skirt, outerwear, shoes, bag, set]
+    blocked_categories: [swimwear, underwear, costume]
+    positive_terms: [office, work, workplace, business casual, tailored, blouse, shirt, trousers, loafer, 通勤, 职场, 衬衫, 西裤]
+    negative_terms: [costume, cosplay, bikini, sleepwear, lingerie, 戏服, 泳装, 睡衣, 内衣]
+  interview:
+    label: 面试
+    aliases: [interview, job interview, 面试, 求职, 应聘]
+    business_labels: []
+    preferred_categories: [top, pants, skirt, dress, outerwear, shoes, bag, set]
+    blocked_categories: [swimwear, underwear, costume]
+    positive_terms: [interview, formal, business, tailored, blazer, shirt, trousers, loafer, 面试, 正式, 商务, 西装, 衬衫, 西裤]
+    negative_terms: [bikini, costume, distressed, sheer, sleepwear, 泳装, 戏服, 破洞, 透视, 睡衣]
+  formal:
+    label: 商务/会议
+    aliases: [formal, business, meeting, conference, presentation, 正式, 正式场合, 商务, 会议, 开会, 答辩, 演讲]
+    business_labels: [正式场合]
+    preferred_categories: [top, pants, skirt, dress, outerwear, shoes, bag, set]
+    blocked_categories: [swimwear, underwear, costume]
+    positive_terms: [formal, business, meeting, conference, tailored, blazer, dress shirt, trousers, 正式, 商务, 会议, 西装, 衬衫, 西裤]
+    negative_terms: [bikini, sleepwear, costume, distressed, 泳装, 睡衣, 戏服, 破洞]
+  date:
+    label: 约会
+    aliases: [date, dating, romantic date, 约会, 情侣, 见对象]
+    business_labels: [约会]
+    preferred_categories: [dress, skirt, top, pants, shoes, bag, jewelry, accessory, set]
+    blocked_categories: [costume]
+    positive_terms: [date, dating, romantic, elegant, floral, lace, ruffle, 浪漫, 优雅, 蕾丝, 花卉, 约会]
+    negative_terms: [uniform, workwear, tactical, 制服, 工作服]
+  party:
+    label: 聚会/派对/年会
+    aliases: [party, cocktail party, annual party, 聚会, 派对, 年会, 轰趴, 酒会, 夜店]
+    business_labels: [聚会]
+    preferred_categories: [dress, skirt, top, pants, shoes, bag, jewelry, accessory, set]
+    blocked_categories: [swimwear, underwear]
+    positive_terms: [party, cocktail, evening, club, sequin, glitter, sparkle, metallic, 聚会, 派对, 酒会, 亮片, 闪亮]
+    negative_terms: [uniform, workwear, tactical, sleepwear, 制服, 工作服, 睡衣]
+  dining:
+    label: 聚餐
+    aliases: [dining, dinner, banquet, 聚餐, 约饭, 宴请, 宴会, 正餐]
+    business_labels: []
+    preferred_categories: [dress, skirt, top, pants, outerwear, shoes, bag, jewelry, accessory, set]
+    blocked_categories: [swimwear, underwear, costume]
+    positive_terms: [dining, dinner, banquet, restaurant, smart casual, elegant, cocktail, 聚餐, 宴会, 优雅, 精致]
+    negative_terms: [bikini, sleepwear, workwear, tactical, 泳装, 睡衣, 工作服]
+  wedding:
+    label: 婚礼
+    aliases: [wedding, bridesmaid, 婚礼, 婚宴, 伴娘, 伴郎, 订婚, 婚庆]
+    business_labels: []
+    preferred_categories: [dress, skirt, top, pants, outerwear, shoes, bag, jewelry, accessory, set]
+    blocked_categories: [swimwear, underwear, costume]
+    positive_terms: [wedding, formal, elegant, cocktail, bridesmaid, lace, satin, 婚礼, 礼服, 优雅, 蕾丝]
+    negative_terms: [casual tee, workwear, tactical, bikini, 工作服, 泳装]
+  ceremony:
+    label: 毕业/典礼
+    aliases: [ceremony, graduation, commencement, award ceremony, 毕业, 毕业典礼, 典礼, 颁奖, 颁奖礼, 成人礼]
+    business_labels: []
+    preferred_categories: [dress, skirt, top, pants, outerwear, shoes, bag, set]
+    blocked_categories: [swimwear, underwear, costume]
+    positive_terms: [ceremony, graduation, commencement, academic, formal, tailored, elegant, gown, 毕业, 典礼, 正式, 学位服, 礼服]
+    negative_terms: [bikini, sleepwear, workwear, tactical, 泳装, 睡衣, 工作服]
+  vacation:
+    label: 旅行/度假
+    aliases: [vacation, resort, travel, trip, 度假, 旅行, 出游, 旅游]
+    business_labels: [旅行]
+    preferred_categories: [dress, shorts, skirt, top, pants, set, shoes, accessory, bag]
+    blocked_categories: [costume]
+    positive_terms: [vacation, resort, travel, relaxed, lightweight, floral, linen, 度假, 旅行, 轻盈, 花卉, 亚麻]
+    negative_terms: [uniform, workwear, tactical, 制服, 工作服]
+  beach:
+    label: 海边
+    aliases: [beach, seaside, island, 海边, 沙滩, 海岛, 海滨, 海滩]
+    business_labels: []
+    preferred_categories: [swimwear, dress, shorts, skirt, top, pants, set, shoes, accessory, bag]
+    blocked_categories: [outerwear, sweater, costume]
+    positive_terms: [swim, swimsuit, bikini, beach, seaside, resort, tropical, linen, breathable, sundress, cover-up, sandal, 泳装, 沙滩, 度假, 亚麻, 透气, 吊带]
+    negative_terms: [leather jacket, blazer, suit jacket, wool coat, puffer, fleece, parka, bicycle, bike, cruiser, braking, 皮夹克, 西装外套, 羊毛大衣, 羽绒, 自行车]
+  shopping:
+    label: 逛街/购物
+    aliases: [shopping, mall, 逛街, 购物, 买东西, 商场]
+    business_labels: []
+    preferred_categories: [top, pants, shorts, skirt, dress, sweater, outerwear, shoes, bag, set]
+    blocked_categories: [swimwear, underwear, costume]
+    positive_terms: [shopping, mall, casual, comfortable, versatile, lightweight, sneaker, crossbody, 逛街, 休闲, 舒适, 百搭, 轻便, 运动鞋, 斜挎]
+    negative_terms: [bikini, evening gown, uniform, tactical, 泳装, 晚礼服, 制服]
+  sports:
+    label: 运动/健身
+    aliases: [sports, sport, workout, fitness, running, yoga, 运动, 健身, 跑步, 瑜伽, 打球, 训练]
+    business_labels: [运动]
+    preferred_categories: [top, pants, shorts, shoes, set, accessory]
+    blocked_categories: [dress, skirt, jewelry, costume]
+    positive_terms: [sport, athletic, workout, fitness, running, yoga, performance, breathable, stretch, 运动, 健身, 跑步, 瑜伽, 透气, 弹力]
+    negative_terms: [formal, evening gown, blazer, lace, 正装, 礼服, 西装, 蕾丝]
+  outdoor:
+    label: 户外/徒步/露营
+    aliases: [outdoor, hiking, camping, trekking, trail, 户外, 徒步, 登山, 露营, 野营, 骑行]
+    business_labels: []
+    preferred_categories: [top, pants, shorts, sweater, outerwear, shoes, bag, set, accessory]
+    blocked_categories: [dress, skirt, jewelry, underwear, costume]
+    positive_terms: [outdoor, hiking, camping, trekking, trail, waterproof, windproof, utility, fleece, breathable, 户外, 徒步, 露营, 防水, 防风, 速干, 透气]
+    negative_terms: [evening gown, cocktail dress, lace, sequin, 礼服, 蕾丝, 亮片]
+  home:
+    label: 居家
+    aliases: [home, lounge, loungewear, 居家, 宅家, 在家, 家里穿]
+    business_labels: []
+    preferred_categories: [top, pants, shorts, dress, sweater, underwear, set, shoes]
+    blocked_categories: [costume]
+    positive_terms: [home, lounge, loungewear, cozy, soft, relaxed, robe, slipper, 居家, 舒适, 柔软, 宽松, 浴袍, 拖鞋]
+    negative_terms: [formal, business, evening gown, tactical, 正装, 商务, 礼服]
+  sleep:
+    label: 睡眠
+    aliases: [sleep, bedtime, sleepwear, pajama, 睡觉, 睡眠, 睡衣, 夜间休息]
+    business_labels: []
+    preferred_categories: [underwear, top, pants, shorts, dress, set, shoes]
+    blocked_categories: [outerwear, jewelry, costume]
+    positive_terms: [sleep, sleepwear, pajama, pyjama, nightgown, nightdress, robe, soft, breathable, 睡衣, 家居服, 柔软, 透气, 浴袍]
+    negative_terms: [formal, business, blazer, denim, tactical, 正装, 商务, 西装, 牛仔]
+  photo:
+    label: 拍照/写真
+    aliases: [photo, photoshoot, portrait, 拍照, 写真, 上镜, 拍摄, 旅拍]
+    business_labels: []
+    preferred_categories: [dress, skirt, top, pants, outerwear, shoes, bag, jewelry, accessory, set, costume]
+    blocked_categories: []
+    positive_terms: [photo, photoshoot, portrait, photogenic, statement, dramatic, floral, lace, ruffle, sequin, print, 拍照, 写真, 上镜, 花卉, 蕾丝, 荷叶边, 亮片, 印花]
+    negative_terms: [uniform, workwear, tactical, 制服, 工作服]
+  performance:
+    label: 演出/舞台
+    aliases: [performance, stage, concert, show, 演出, 舞台, 表演, 演唱会, 舞蹈]
+    business_labels: []
+    preferred_categories: [dress, skirt, top, pants, outerwear, shoes, jewelry, accessory, set, costume]
+    blocked_categories: [sleepwear, underwear]
+    positive_terms: [performance, stage, concert, dance, costume, dramatic, sequin, glitter, metallic, 演出, 舞台, 表演, 亮片, 闪亮]
+    negative_terms: [workwear, tactical, sleepwear, 工作服, 睡衣]
+  festival:
+    label: 节日活动
+    aliases: [festival, holiday, celebration, festive, 节日, 节庆, 庆典, 春节, 新年, 圣诞, 情人节, 万圣节]
+    business_labels: []
+    preferred_categories: [dress, skirt, top, pants, sweater, outerwear, shoes, bag, jewelry, accessory, set, costume]
+    blocked_categories: []
+    positive_terms: [festival, holiday, celebration, festive, christmas, halloween, new year, party, sequin, sparkle, red, gold, 节日, 节庆, 庆典, 圣诞, 新年, 亮片, 红色, 金色]
+    negative_terms: [workwear, tactical, uniform, 工作服, 制服]

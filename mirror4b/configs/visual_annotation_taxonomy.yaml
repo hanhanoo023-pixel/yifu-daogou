@@ -1,0 +1,279 @@
+version: visual-annotation-v1
+
+categories:
+  top:
+    label: 上衣
+    subcategories:
+      t_shirt: T恤
+      shirt: 衬衫
+      blouse: 女式衬衫
+      tank_top: 背心
+      camisole: 吊带上衣
+      crop_top: 短款上衣
+      tunic: 长款上衣
+      polo: Polo衫
+      sweatshirt: 卫衣
+  dress:
+    label: 连衣裙
+    subcategories:
+      mini_dress: 迷你裙
+      midi_dress: 中长裙
+      maxi_dress: 长裙
+      slip_dress: 吊带裙
+      wrap_dress: 裹身裙
+      shirt_dress: 衬衫裙
+      bodycon_dress: 修身裙
+      a_line_dress: A字裙
+      formal_dress: 礼服裙
+  pants:
+    label: 长裤
+    subcategories:
+      jeans: 牛仔裤
+      trousers: 西裤
+      wide_leg_pants: 阔腿裤
+      leggings: 紧身裤
+      joggers: 束脚裤
+      cargo_pants: 工装裤
+      flare_pants: 喇叭裤
+  shorts:
+    label: 短裤
+    subcategories:
+      denim_shorts: 牛仔短裤
+      tailored_shorts: 西装短裤
+      athletic_shorts: 运动短裤
+      bermuda_shorts: 百慕大短裤
+  skirt:
+    label: 半身裙
+    subcategories:
+      mini_skirt: 迷你裙
+      midi_skirt: 中长裙
+      maxi_skirt: 长裙
+      pleated_skirt: 百褶裙
+      pencil_skirt: 铅笔裙
+      a_line_skirt: A字裙
+      wrap_skirt: 裹身裙
+  outerwear:
+    label: 外套
+    subcategories:
+      jacket: 夹克
+      coat: 大衣
+      blazer: 西装外套
+      trench_coat: 风衣
+      vest: 马甲
+  sweater:
+    label: 针织与卫衣
+    subcategories:
+      sweater: 毛衣
+      cardigan: 开衫
+      hoodie: 连帽卫衣
+      pullover: 套头衫
+  swimwear:
+    label: 泳装
+    subcategories:
+      bikini: 比基尼
+      one_piece_swimsuit: 连体泳衣
+      swim_cover_up: 泳装罩衫
+  set:
+    label: 套装
+    subcategories:
+      two_piece_set: 两件套
+      tracksuit: 运动套装
+      coordinated_set: 配套套装
+  shoes:
+    label: 鞋履
+    subcategories:
+      sneakers: 运动鞋
+      sandals: 凉鞋
+      boots: 靴子
+      pumps: 高跟鞋
+      flats: 平底鞋
+      loafers: 乐福鞋
+      slippers: 拖鞋
+  bag:
+    label: 包袋
+    subcategories:
+      tote: 托特包
+      shoulder_bag: 单肩包
+      crossbody_bag: 斜挎包
+      handbag: 手提包
+      backpack: 双肩包
+      clutch: 手拿包
+      wallet: 钱包
+
+colors:
+  black: 黑色
+  white: 白色
+  ivory: 象牙白
+  cream: 奶油色
+  beige: 米色
+  brown: 棕色
+  gray: 灰色
+  silver: 银色
+  gold: 金色
+  red: 红色
+  burgundy: 酒红色
+  orange: 橙色
+  yellow: 黄色
+  green: 绿色
+  blue: 蓝色
+  navy: 藏蓝色
+  teal: 蓝绿色
+  purple: 紫色
+  lavender: 薰衣草紫
+  pink: 粉色
+  transparent: 透明
+  multicolor: 多色
+
+color_roles:
+  base: 底色
+  major: 主要配色
+  accent: 点缀色
+
+color_coverages:
+  dominant: 主导
+  major: 大面积
+  minor: 小面积
+
+color_depths:
+  light: 浅色
+  medium: 中等
+  dark: 深色
+
+patterns:
+  solid: 纯色
+  striped: 条纹
+  plaid: 格纹
+  floral: 花卉
+  animal_print: 动物纹
+  animal_graphic: 动物图案
+  polka_dot: 波点
+  geometric: 几何图案
+  abstract: 抽象图案
+  graphic: 图像印花
+  letter: 字母印花
+  camouflage: 迷彩
+  tie_dye: 扎染
+  color_block: 撞色拼接
+  ombre: 渐变
+  paisley: 佩斯利
+  tropical: 热带印花
+  stars: 星星
+  flag: 旗帜
+
+styles:
+  casual: 休闲
+  minimalist: 简约
+  formal: 正式
+  business: 通勤
+  elegant: 优雅
+  romantic: 浪漫
+  sweet: 甜美
+  streetwear: 街头
+  retro: 复古
+  sporty: 运动
+  vacation: 度假
+  bohemian: 波西米亚
+  preppy: 学院
+  y2k: Y2K
+  punk: 朋克
+  gothic: 哥特
+  sexy: 性感
+  feminine: 女性化
+  workwear: 工装
+  athleisure: 运动休闲
+  western: 西部
+  classic: 经典
+  avant_garde: 前卫
+
+fits:
+  slim: 修身
+  regular: 常规
+  loose: 宽松
+  oversized: 廓形
+  bodycon: 紧身
+  a_line: A字版
+  straight: 直筒
+  wide_leg: 阔腿
+  high_waist: 高腰
+  low_waist: 低腰
+  cropped: 短款
+  longline: 长款
+
+design_details:
+  fringe: 流苏
+  embroidery: 刺绣
+  sheer_mesh: 透明网纱
+  halter_neck: 挂脖
+  off_shoulder: 露肩
+  ruffle: 荷叶边
+  lace_trim: 蕾丝边
+  cutout: 镂空
+  distressed: 做旧
+  pleated: 褶皱
+  slit: 开衩
+  ruched: 抽褶
+  tie: 系带
+  zipper: 拉链
+  button: 纽扣
+  pocket: 口袋
+  hood: 连帽
+  belt: 腰带
+  sequins: 亮片
+  beading: 珠饰
+  bow: 蝴蝶结
+  asymmetric: 不对称
+  backless: 露背
+  strapless: 抹胸
+  spaghetti_strap: 细肩带
+  puff_sleeve: 泡泡袖
+
+materials:
+  cotton: 棉
+  polyester: 聚酯纤维
+  wool: 羊毛
+  leather: 皮革
+  silk: 真丝
+  denim: 牛仔
+  linen: 亚麻
+  lace: 蕾丝
+  chiffon: 雪纺
+  knit: 针织
+  satin: 缎面
+  velvet: 丝绒
+  mesh: 网纱
+
+occasions:
+  daily: 日常
+  commute: 通勤
+  formal: 正式场合
+  date: 约会
+  wedding: 婚礼
+  party: 聚会
+  vacation: 度假
+  beach: 海边
+  sports: 运动
+  outdoor: 户外
+  travel: 旅行
+
+seasons:
+  spring: 春季
+  summer: 夏季
+  autumn: 秋季
+  winter: 冬季
+  transitional: 换季
+
+quality:
+  minimum_annotation_confidence: 0.75
+  minimum_audit_confidence: 0.85
+  maximum_audit_rounds: 3
+  required_visual_fields:
+    - category
+    - subcategory
+    - colors
+    - color_depth
+  invalid_image_reasons:
+    - unreadable_image
+    - no_fashion_product
+    - multiple_products_ambiguous
+    - product_severely_occluded
+    - image_text_conflict_unresolved

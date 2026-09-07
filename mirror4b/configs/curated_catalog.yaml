@@ -1,0 +1,38 @@
+version: curated-catalog-v1
+
+candidate_quotas:
+  top: 14000
+  pants: 3500
+  outerwear: 3000
+  dress: 1500
+  shorts: 1400
+  sweater: 1300
+  skirt: 400
+  set: 800
+  swimwear: 1200
+  shoes: 7000
+  bag: 7000
+
+selection:
+  require_image: true
+  remove_failed_moderation: true
+  deduplicate_exact_image_url: true
+  balance_by_color: true
+  minimum_title_characters: 4
+
+quality_score:
+  audited_fashion200k: 8
+  business_slots_available: 3
+  features_text: 3
+  description_text: 3
+  material: 2
+  rating_evidence: 2
+  original_price: 1
+  original_size: 1
+
+serving_catalog:
+  expected_minimum: 25000
+  expected_maximum: 35000
+  maximum_products_per_exact_image: 1
+  admit_statuses:
+    - PASS
