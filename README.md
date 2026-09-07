@@ -1,90 +1,241 @@
-# StyleMate：对话式 AI 服装导购
+# StyleMate：对话式 AI 服装导购与虚拟试衣 Demo
 
-StyleMate 是一个基于真实商品元数据、SQLite 商品数据库、DeepSeek 需求解析和 C 模块混合排序的对话式服装导购 Demo。用户可以用自然语言描述品类、颜色、季节、尺码、预算、品牌和材质，并通过多轮对话继续修改条件。
+StyleMate 是一个面向服装零售场景的对话式 AI 导购项目。用户可以像和真实导购聊天一样描述“想买黑色连衣裙”“换成春夏穿的”“预算 300 元以内”“想显高一点”等需求，系统会从商品数据库中筛选、排序并展示推荐商品，同时支持人物照片管理、AI 试穿、背景替换、结果保存、演示购物车和订单流程。
 
-## 主要功能
+本仓库包含两个版本：
 
-- 中文自然语言购物需求解析，输出意图、置信度、解析来源和澄清状态
-- 识别推荐、浏览、换款、询价、库存、材质、商品解释、越界和未知意图
-- 检测价格、颜色、材质和品牌条件冲突，信息不足时主动澄清
-- 多轮条件记忆，例如“换成蓝色”“尺码改成 XL”
-- 25 万余条服装、鞋包、首饰商品检索
-- 品类、价格、颜色、尺码、季节、品牌、材质和库存硬过滤
-- 明确排除颜色、材质、品牌及商品ID
-- 软负向颜色降权，不误做硬过滤
-- E5 语义双塔与规则评分按 35% / 65% 融合排序
-- 基于实际商品字段生成匹配依据
-- 推荐理由逐字段核验，输出 `PASS / REWRITE / BLOCK` 和原始 Claims
-- 有结果、无结果和库存不足原因反馈
-- DeepSeek API 原始 `usage` 完整打印和保存
-- 响应式 Next.js 商品导购界面
+- 根目录版本：当前 StyleMate 主版本，保留阿里云 DashScope 试穿/换背景接口接入。
+- `mirror4b/`：Mirror4B 改造版，在主项目基础上增加 Mirror4B 商品、Agent、购物车、试衣和商家 Token 适配。
+
+仓库已经通过 Git LFS 附带当前运行所需的商品库、语义向量和 E5 基础模型。别人 clone 后只要拉取 LFS 文件并配置自己的 API Key，就可以运行当前项目。
+
+## 完整功能
+
+### 1. Mia 对话式动态导购
+
+- 页面内置导购形象 Mia。
+- 支持中文自然语言输入购物需求。
+- 支持颜色、尺码、季节、场合、预算、品类、品牌、材质等条件解析。
+- 支持“换成蓝色”“再便宜一点”“不要黑色”“尺码改成 L”这类连续修改。
+- 支持开启新对话后清空当前会话上下文，避免上一轮试穿结果串到新对话。
+- 支持继续聊天时保留导购头像和当前推荐上下文。
+
+### 2. 意图识别与多轮会话
+
+- `/api/chat` 融合规则解析和大模型结构化解析。
+- 识别推荐、换款、浏览、商品解释、询价、库存、材质、尺码、颜色、品牌、越界和未知意图。
+- 维护会话内的当前商品、已选商品、可见商品和过滤条件。
+- 当事实型问题缺少商品上下文时主动澄清，不编造价格、库存、材质等信息。
+- 支持删除 session，让新对话从空状态开始。
+
+### 3. 商品推荐与排序
+
+- 使用 SQLite 商品库检索当前可推荐商品。
+- 当前可推荐商品量约 255,707 条。
+- 商品库来源包括 Amazon 服装鞋包珠宝商品元数据，以及经过严格筛选的 Fashion200K 图文商品。
+- 支持硬过滤：
+  - 品类
+  - 颜色
+  - 尺码
+  - 季节
+  - 预算
+  - 品牌
+  - 材质
+  - 库存
+  - 排除商品 ID
+- 支持软排序：
+  - 语义相似度
+  - 规则得分
+  - 场景/风格匹配
+  - 身材目标相关性
+  - 库存和演示业务字段
+- 当前排序策略为语义 35% + 规则 65% 融合。
+- 商品推荐理由基于数据库字段生成，不使用不存在的商品信息。
+
+### 4. 商品卡片与商品详情
+
+- 每件商品展示标题、图片、价格、品类、颜色、尺码、库存等前端需要字段。
+- 商品价格默认以人民币展示。
+- 商品卡片支持查看详情。
+- 商品卡片支持加入演示购物车。
+- 点击某商品下方“加入演示购物车”时，弹出的购物车只聚焦该商品，用户可以选择尺码和数量。
+- 点击页面顶部购物车时，展示所有已加入购物车的商品。
+
+### 5. 人物照片中心
+
+- 支持上传人物照片。
+- 上传后不会自动选择该照片。
+- 上传后不会自动把照片发送到对话界面。
+- 点击照片可以选择该照片；再次点击可以取消选择。
+- 只有主动选择人物照片并触发试穿时，才进入试穿流程。
+- 支持删除人物照片。
+
+### 6. AI 试穿
+
+- 用户选择人物照片和商品后，可以创建 AI 试穿任务。
+- 后端通过 `/api/try-on/tasks` 创建试穿任务。
+- 前端通过任务轮询查看试穿状态和结果。
+- 主版本使用 DashScope/阿里云相关接口配置。
+- Mirror4B 改造版可接入 Mirror4B 试衣能力。
+- 如果没有选择人物照片，不会自动试穿。
+
+### 7. AI 换背景
+
+- 支持对已有视觉结果发起背景替换任务。
+- 后端通过 `/api/background/tasks` 创建背景任务。
+- 前端轮询任务状态并展示结果。
+- 背景替换依赖外部视觉 API，需要配置对应 API Key 和公网 HTTPS 访问地址。
+
+### 8. 图片查看与结果保存
+
+- 支持点击图片查看大图。
+- 支持保存 AI 视觉结果。
+- 保存结果按用户 profile 维度读取。
+- 支持删除保存结果。
+
+### 9. 演示购物车、订单和支付
+
+- 支持加入演示购物车。
+- 支持选择尺码和数量。
+- 支持购物车商品删除。
+- 支持创建演示订单。
+- 支持演示支付状态流转。
+- 支持读取用户历史演示订单。
+- 购物车、订单和价格均为 Demo 流程，不连接真实支付。
+
+### 10. 门店导购信息
+
+- 支持展示门店导购 Mia 的演示联系信息。
+- 可通过环境变量配置导购名称、服务渠道、联系方式和服务时间。
+- 当前默认是演示门店服务，不代表真实门店客服系统已连接。
+
+### 11. SafetyGuard 与推荐理由核验
+
+- 推荐理由会经过安全核验。
+- 检查标题、品类、价格、材质、库存、品牌、颜色、特征等字段是否有数据库依据。
+- 阻止虚假最低价、虚假稀缺、绝对化效果承诺和不当身体评价。
+- 支持 `PASS / REWRITE / BLOCK` 判定。
+- 模拟价格、尺码、季节和库存必须标记为演示数据。
+
+### 12. API usage 记录
+
+- 所有大模型 API 调用代码需要打印 API 返回的原始 `usage`。
+- 如果保存结果文件，也需要保存每一次有效 API 请求的原始 `usage`。
+- `usage` 保持 API 返回原始结构，不改字段名、不压平、不删字段。
+
+### 13. Mirror4B 改造版
+
+`mirror4b/` 是从主项目复制出的独立改造版本，用于接入 Mirror4B 文档中的能力：
+
+- Mirror4B 商品列表适配。
+- Mirror4B Agent 对话接口适配。
+- Mirror4B 商品字段到 StyleMate 商品卡片字段的转换。
+- Mirror4B 购物车/订单相关演示逻辑。
+- Mirror4B 试衣、换背景、保存手机等流程扩展预留。
+- 默认币种为人民币 `CNY`。
+- 需要商家 API 地址和 Bearer Token。
+
+Mirror4B 版本的后端标题为 `StyleMate Mirror4B API`，可以在 `mirror4b/` 目录内独立运行。
 
 ## 技术栈
 
 - 前端：Next.js 15、React 19、TypeScript
 - 后端：FastAPI、Pydantic、HTTPX
 - 数据库：SQLite
-- 模型：DeepSeek Chat（需求解析）；multilingual-e5-small + C模块双塔投影（语义排序）
-- 数据源：Amazon Reviews 2023 — Clothing, Shoes and Jewelry；Fashion200K 图文子集
+- 语义模型：`intfloat/multilingual-e5-small`
+- 语义排序：E5 基础模型 + C 模块双塔投影 + 商品向量索引
+- LLM：DeepSeek Chat，以及可配置的意图识别模型服务
+- 视觉 API：DashScope/阿里云试穿与背景任务；Mirror4B 改造版支持 Mirror4B 接口适配
+- 数据源：Amazon Reviews 2023 Clothing, Shoes and Jewelry；Fashion200K 图文子集
 
-## 项目结构
+## 仓库结构
 
 ```text
-backend/                 FastAPI、数据库查询、DeepSeek 接入
-backend/c_recommender/   C模块语义双塔、规则评分与融合排序
-configs/                 推荐排序权重、禁用话术和安全规则
-frontend/                Next.js 网页
-scripts/                 数据导入、模型下载和商品向量构建脚本
-tests/                   后端测试
-data/                    本地数据库与处理报告
-data/semantic/           257,384条商品向量与构建元数据，不提交GitHub
-models/c_recommender/    E5基础模型与正式双塔投影
-amazon-data/             本地 Amazon 原始数据，不提交 GitHub
-logs/                    API usage 日志，不提交 GitHub
+backend/                         主版本 FastAPI 后端
+backend/c_recommender/           语义编码、向量索引、规则排序和融合排序
+configs/                         人设、意图、排序、安全、场景和币种配置
+frontend/                        主版本 Next.js 前端
+data/eval/                       小型评测草稿
+data/experiments/                当前运行商品库和语义向量，使用 Git LFS 管理
+models/c_recommender/            C 模块投影模型和 E5 基础模型，部分文件使用 Git LFS 管理
+scripts/                         数据导入、清洗、审计、向量构建脚本
+tests/                           主版本测试
+mirror4b/                        Mirror4B 改造版
+*.docx / *.pptx / 数据集000.md   项目说明、汇报和数据说明材料
 ```
 
-## C 模块接入状态
+不会上传真实密钥、运行日志、缓存、`node_modules`、原始 Amazon 大数据和本地临时目录。
 
-当前已完成两阶段接入：
+## 运行数据与模型
 
-- 第一阶段：SQLite硬过滤、规则软评分、商品排重、事实型推荐理由和模拟字段来源标识。
-- 第二阶段：为257,384条商品离线生成128维向量；查询时只编码用户需求，并对硬过滤候选集执行“语义35% + 规则65%”融合排序。
-- 图片与品类严格审计：1,677条不符合严格质量闸门的Fashion200K商品通过 `product_moderation` 逻辑下架；当前可推荐商品为255,707条。
+为了让别人 clone 后能跑当前项目，本仓库通过 Git LFS 提供运行必需数据：
 
-商品库包含252,413条Amazon商品，以及4,971条具备精确名称映射、真实Fashion200K图片和非空颜色的C模块Demo商品。商品语义文本只使用数据库内的标题、品类、品牌、颜色、材质、特征和描述；模拟价格、尺码、季节及库存不进入商品语义向量。`amazon-data/C模块交付包_20260819` 仅作为原始交付包保存，运行代码不从该目录导入。
+```text
+data/experiments/catalog_hybrid_clean_v1.db
+data/experiments/semantic_hybrid_clean_v1/product_embeddings.npy
+data/experiments/semantic_hybrid_clean_v1/product_ids.txt
+data/experiments/semantic_hybrid_clean_v1/product_embeddings.meta.json
+models/c_recommender/multilingual-e5-small/
+models/c_recommender/public_semantic_two_tower.pt
+```
 
-严格质量闸门仅保留原颜色审计为 `PASS`、单色目标像素比例不低于7%、且图片描述类别未与商品类别明确冲突的Fashion200K商品，共保留3,294条。当前向量元数据记录的数据库 SHA-256 为 `d35b32124767764aaba2f3af5e2dfcb89488c11690b1a32ed2a4a1d5f8bb5e41`，正式投影模型 SHA-256 为 `900d3083aee1a94be01fc9f5bfbdff3aecdf744c86dcce474b32c00cbe268b2d`。
+大文件包括：
 
-## 意图理解与 SafetyGuard
+```text
+data/experiments/catalog_hybrid_clean_v1.db
+data/experiments/semantic_hybrid_clean_v1/product_embeddings.npy
+models/c_recommender/multilingual-e5-small/model.safetensors
+```
 
-`/api/chat` 使用规则优先项与 DeepSeek 结构化解析融合，返回固定意图枚举、置信度、解析来源、标准槽位、冲突、警告和澄清问题。事实型询问缺少具体商品上下文时只请求澄清，不生成价格、库存或材质答案。DeepSeek 请求失败会直接报错，不执行 fallback。
+如果 clone 后这些文件只有一百多字节，说明 Git LFS 文件没有拉下来，需要执行：
 
-每条推荐理由由独立的 ProductExplanation 根据商品标题、中文品类、颜色、品牌、材质、商品特征及用户命中条件生成，再经过 SafetyGuard。系统核验标题、品类、价格、材质、库存、品牌、颜色和特征，检测虚假最低价、虚假稀缺、绝对化效果和不当身体评价，并返回原理由、安全理由、结构化 Claims、数据库字段支持率以及 `PASS / REWRITE / BLOCK`。模拟尺码、价格、季节和库存必须明确标记为演示数据。
+```bash
+git lfs install
+git lfs pull
+```
 
-## 本地运行
+## 本地启动：主版本
 
-### 1. 配置后端
+### 1. 克隆并拉取 LFS 文件
+
+```bash
+git clone https://github.com/hanhanoo023-pixel/yifu-daogou.git
+cd yifu-daogou
+git lfs install
+git lfs pull
+```
+
+### 2. 后端环境
+
+推荐使用 Python 3.10。
 
 ```bash
 conda create -n YouCook2 python=3.10
 conda activate YouCook2
 pip install -r requirements.txt
+```
+
+复制环境变量模板：
+
+```bash
 cp .env.example .env
 ```
 
-编辑 `.env`，填写自己的 DeepSeek API Key：
-
-```text
-DEEPSEEK_API_KEY=your_deepseek_api_key_here
-```
+编辑 `.env`，填入自己的 API Key 和服务地址。不要提交 `.env`。
 
 启动后端：
 
 ```bash
-uvicorn backend.app:app --port 8000
+uvicorn backend.app:app --host 127.0.0.1 --port 8000
 ```
 
-### 2. 配置前端
+健康检查：
+
+```bash
+curl http://127.0.0.1:8000/api/health
+```
+
+### 3. 前端环境
 
 打开另一个终端：
 
@@ -94,21 +245,156 @@ npm install
 npm run dev
 ```
 
-浏览器访问 <http://localhost:3000>。
+浏览器访问：
+
+```text
+http://localhost:3000
+```
+
+前端的 `frontend/next.config.ts` 已将 `/api/*` 转发到：
+
+```text
+http://127.0.0.1:8000/api/*
+```
+
+## 本地启动：Mirror4B 改造版
+
+进入 Mirror4B 子项目：
+
+```bash
+cd mirror4b
+```
+
+后端环境可以复用主项目的 Python 环境：
+
+```bash
+conda activate YouCook2
+pip install -r requirements.txt
+cp .env.example .env
+```
+
+编辑 `mirror4b/.env`，至少配置：
+
+```text
+MIRROR4B_BASE_URL=https://your-mirror4b-domain.example
+MIRROR4B_MERCHANT_TOKEN=your_mirror4b_merchant_token_here
+MIRROR4B_CURRENCY=CNY
+```
+
+启动 Mirror4B 后端：
+
+```bash
+uvicorn backend.app:app --host 127.0.0.1 --port 8000
+```
+
+启动 Mirror4B 前端：
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Mirror4B 版仍然需要根项目同样的运行数据目录和模型目录。如果只在 `mirror4b/` 内单独部署，需要把根项目的 `data/experiments/` 和 `models/c_recommender/` 按相同结构准备好。
+
+## 环境变量
+
+根目录 `.env.example`：
+
+```text
+DEEPSEEK_API_KEY=your_deepseek_api_key_here
+STYLEMATE_INTENT_BASE_URL=https://api.siliconflow.cn/v1
+STYLEMATE_INTENT_MODEL=openai-chat:Qwen/Qwen3.5-4B
+STYLEMATE_INTENT_API_KEY=your_stylemate_intent_api_key_here
+DASHSCOPE_API_KEY=your_beijing_dashscope_api_key_here
+DASHSCOPE_BASE_URL=https://your-workspace.cn-beijing.maas.aliyuncs.com/api/v1
+STYLEMATE_PUBLIC_BASE_URL=https://your-stylemate-domain.example
+STYLEMATE_SALES_NAME=门店导购 Mia（演示）
+STYLEMATE_SALES_CHANNEL=店内服务台
+STYLEMATE_SALES_CONTACT=请向门店工作人员出示当前商品
+STYLEMATE_SALES_HOURS=10:00–21:00（演示）
+```
+
+Mirror4B 额外变量：
+
+```text
+MIRROR4B_BASE_URL=https://your-mirror4b-domain.example
+MIRROR4B_MERCHANT_TOKEN=your_mirror4b_merchant_token_here
+MIRROR4B_CURRENCY=CNY
+```
+
+说明：
+
+- `DEEPSEEK_API_KEY`：主对话生成使用。
+- `STYLEMATE_INTENT_*`：意图识别模型服务使用。
+- `DASHSCOPE_*`：阿里云试穿和背景任务使用。
+- `STYLEMATE_PUBLIC_BASE_URL`：图片上传后生成公网可访问 URL 使用；试穿/换背景通常需要 HTTPS 公网地址。
+- `MIRROR4B_*`：Mirror4B 改造版连接真实商家服务使用。
+- 所有真实 Key/Token 都只能放 `.env`，不要提交 GitHub。
+
+## 常用 API
+
+主版本：
+
+```text
+GET    /api/health
+POST   /api/chat
+POST   /api/recommend
+GET    /api/products/{product_id}
+GET    /api/store/contact
+GET    /api/cart/{profile_id}
+POST   /api/cart/{profile_id}/items
+DELETE /api/cart/{profile_id}/items/{product_id}
+POST   /api/orders
+GET    /api/orders/{profile_id}
+POST   /api/orders/{order_id}/demo-pay
+POST   /api/try-on/person-image
+GET    /api/person-images/{profile_id}
+DELETE /api/person-images/{profile_id}/{image_id}
+POST   /api/try-on/tasks
+GET    /api/try-on/tasks/{task_id}
+POST   /api/background/tasks
+GET    /api/background/tasks/{task_id}
+POST   /api/saved-results
+GET    /api/saved-results/{profile_id}
+DELETE /api/sessions/{session_id}
+```
+
+Mirror4B 额外接口：
+
+```text
+GET  /api/mirror4b/products
+POST /api/mirror4b/agent/chat
+```
 
 ## 测试
 
-```bash
-conda run -n YouCook2 env PYTHONDONTWRITEBYTECODE=1 \
-  python -m pytest -p no:cacheprovider -q
+后端测试：
 
+```bash
+conda activate YouCook2
+PYTHONDONTWRITEBYTECODE=1 python -m pytest -p no:cacheprovider -q
+```
+
+前端构建：
+
+```bash
 cd frontend
 npm run build
 ```
 
-## 数据构建
+Mirror4B 版测试：
 
-大型数据文件和 SQLite 数据库不提交 GitHub。下载 Amazon Reviews 2023 的 `Clothing_Shoes_and_Jewelry` 商品元数据后，可使用：
+```bash
+cd mirror4b
+PYTHONDONTWRITEBYTECODE=1 python -m pytest -p no:cacheprovider -q
+```
+
+## 数据构建与复现
+
+当前仓库已经包含运行必需的数据库、向量和模型文件，因此 clone 后不需要重新构建数据就能运行推荐流程。
+
+如果需要从原始 Amazon 数据重新构建商品库，可参考：
 
 ```bash
 python scripts/build_filtered_product_database.py \
@@ -118,19 +404,7 @@ python scripts/build_filtered_product_database.py \
   --expected-records 252413
 ```
 
-当前 Demo 只保留具有真实商品 ID、标题、品类、Amazon 图片 URL 和明确颜色字段的商品。颜色不推断、不模拟；品牌、材质等缺失时保持为空。缺失的价格、尺码、季节和库存使用确定性演示值，并以 `synthetic_demo` 标记来源。模拟数据仅用于演示，不代表 Amazon 实时商品信息或真实库存。
-
-## 语义模型与向量重建
-
-基础模型固定为 `intfloat/multilingual-e5-small` 的提交 `614241f622f53c4eeff9890bdc4f31cfecc418b3`。在目标目录不存在时下载：
-
-```bash
-python -m scripts.download_semantic_model \
-  --output models/c_recommender/multilingual-e5-small \
-  --cache .cache/huggingface
-```
-
-重新生成向量前，应先移走现有的三个 `data/semantic/product_*` 产物；构建脚本不会覆盖已有文件。然后执行：
+重建语义向量：
 
 ```bash
 python -m scripts.build_product_embeddings \
@@ -145,12 +419,80 @@ python -m scripts.build_product_embeddings \
   --device cpu
 ```
 
-## 安全说明
+原始 Amazon 大数据不在本仓库内。当前 GitHub 仓库的目标是“clone 后能运行当前 Demo”，不是完整复现所有数据清洗过程。
 
-- `.env`、API usage 日志、数据库、原始数据、构建缓存均已加入 `.gitignore`。
-- 不要将 DeepSeek API Key 提交到 GitHub。
-- 若密钥曾公开，应在发布项目前撤销并重新生成。
+## 安全与隐私
+
+- `.env` 已加入 `.gitignore`，不要上传真实 API Key。
+- 不要上传真实用户照片、真实订单、真实门店 Token。
+- 试穿和背景任务依赖外部 API，调用前请确认图片授权和隐私合规。
+- 本项目中的购物车、订单、价格、库存和门店联系流程均为 Demo。
+- 如果任何 Key 曾经公开过，应立刻撤销并重新生成。
+
+## 常见问题
+
+### 1. clone 后推荐接口报数据库不存在
+
+先检查 Git LFS：
+
+```bash
+git lfs install
+git lfs pull
+ls -lh data/experiments/catalog_hybrid_clean_v1.db
+```
+
+如果数据库只有一百多字节，说明拿到的是 LFS 指针，不是真文件。
+
+### 2. 语义推荐报模型缺失
+
+检查：
+
+```bash
+ls -lh models/c_recommender/multilingual-e5-small/model.safetensors
+ls -lh data/experiments/semantic_hybrid_clean_v1/product_embeddings.npy
+```
+
+如果文件很小，重新执行：
+
+```bash
+git lfs pull
+```
+
+### 3. AI 试穿或换背景失败
+
+检查 `.env`：
+
+```text
+DASHSCOPE_API_KEY
+DASHSCOPE_BASE_URL
+STYLEMATE_PUBLIC_BASE_URL
+```
+
+`STYLEMATE_PUBLIC_BASE_URL` 通常需要公网 HTTPS 地址，否则外部视觉服务无法读取上传图片。
+
+### 4. Mirror4B 接口失败
+
+检查 `mirror4b/.env`：
+
+```text
+MIRROR4B_BASE_URL
+MIRROR4B_MERCHANT_TOKEN
+MIRROR4B_CURRENCY
+```
+
+`MIRROR4B_MERCHANT_TOKEN` 是 Bearer Token，不要写进代码或 README。
+
+### 5. 前端请求不到后端
+
+确认后端运行在：
+
+```text
+http://127.0.0.1:8000
+```
+
+确认前端 `frontend/next.config.ts` 中 `/api/:path*` rewrite 指向同一个后端地址。
 
 ## 数据许可
 
-项目代码可单独开源；Amazon 数据的使用和再分发应遵守数据集官方许可与条款。建议仓库只提供下载与生成说明，不直接提交原始商品数据或生成数据库。
+项目代码可独立开源。Amazon Reviews 2023、Fashion200K、Mirror4B 商家数据和外部模型的使用、再分发、商用限制应遵守对应数据集、模型和 API 服务的官方许可与条款。
+
